@@ -1,0 +1,83 @@
+<template>
+	<ul class="tab-container">
+		<li
+			v-for="(item, index) in tabList"
+			:key="index"
+			class="tab-item"
+			@click="jumpTo(item.link, index)"
+		>
+			<img class="img" :src="item.defaultUrl" alt="" />
+			<div class="name">
+				{{ item.name }}
+			</div>
+		</li>
+	</ul>
+</template>
+
+<script>
+export default {
+	name: 'OrderTab',
+	data() {
+		return {
+			tabList: [
+				{
+					name: '待付款',
+					link: '/movie',
+					defaultUrl:
+						'data:image/png;base64,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'
+				},
+				{
+					name: '待出票',
+					link: '/cinema',
+					defaultUrl:
+						'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAAXNSR0IArs4c6QAAAlZJREFUWAntWL9LAzEU9q6lBR3cquCuoquDdFAEN/0LRKEgttBFsZ1c7KSLWHTojxOngoP/gqDQQXRoFdwd3a3b0fb8Xm1LmqanSXuVQgIheXl5ed999y4vl7ExXTQDHQwYHRIjRKPRcYjHhmFsop13HMdk1F51P7FwGT5P8/n8nciJEHAymZyoVCrPMFgUGQ1pbN+yrEvelxAw2D3DxATqm9/v3w2FQqVUKlXnjQctw+8k2I3gbabR2qZpLmSz2XfWj58VmP5Gsx/JZDJlZtzTLhilkLiIxWJLAL1dr9fXIVus015xOUeTEEcv7ORh9QH2lXyhneV99gLcCBW8Foc3GIaMUGiFXxe+roFhAOrHhwbcD3t/sR05hntta8KHxT65hg9iVaiUGyzmcrl7OZOf2VKAsWsUsDfOqDjibD4gK60jBRj74g4crYBlYYbkQLmJRTelm04KMDLRAxaj+m9l5D46DdjrWNEMa4Y5BqS2NZlMhz27gnrdPJRzbtVFKcCymQ4J5gvQrtThdVtKAZbJdMQw0vhtt8v+RqQA60ynQLbehxVIkzLRDEvRpTBZM6xAmpSJZliKLoXJrpkuHo+Hq9XqEc4Qy7Q20u0Trl9PcKP5SLJXeqR0Wl5YhH+/OJW1LgFrsPJxljU8wB6N4QHoYDNwPdaky/QwahrHgUO07fJbDPsA7hynrimq1IelD0BzVKnvhR7rElhhcQ0JWNzgjphu4lslAfanIWw1B7zWt/y2WyFgsNYAGQgECu2ZzU4wGDywbbtEotd6vNWGHx6DljUDDAPfxa76MTvKfFgAAAAASUVORK5CYII='
+				},
+				{
+					name: '已出票',
+					link: 'my',
+					defaultUrl:
+						'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAAXNSR0IArs4c6QAAA5ZJREFUWAntmE1IVFEUgJ1xUAyt6AcS2oWUtAtEqAjDlZWbgqE/QijG0RAGFSVoMbvIpEQZfwaiXBS1almbISksKAiCoGgVEjNgBWWYaM5M37H75M3zPefNe2+EYi5c773nnHvO986cO2+uZWWlVspATgZ8OSu16Orq2r20tDSQzWabENWa2YjM7/f3j4+PD1jpjfJwONyXyWSuG+W6dcrn801VVFT0jYyMfNbJV6f+1ZmaCOzi4uJbYM8gsoQVc2zq1TZbgw37Wokr8YXDzGnAKJTMIttGf1xZWRkye9JQKLQP/Xt6ayQS2To0NPSd+bpN7BYWFlqVUX08Hv9g3KCSFUfeojjOGm3WZJgnbBIjK1jRSTA+upfYbgfilsjyNbETe9lnBiv7JTkSV+Yah8z1bQ0wypUyMMusfmN5eXkv6zSO28h4D6PpeRC50reJvdqnd5Uz18U1LUcz4BwHVovR0dEX6LqVfrC9vT3R2dnZoLeXtciRDSp5t9qnNytovqaGC9nNRztM9n6wJ0Y/ury8/ArAObL6hY9+J+vNyt8842XsJ9Xa8eA4w1pEBVEH4E1kM8AK5B41zih5nRewEtNVhsWBNGBSDD3SyfgWxh30r8gl+542T4D1RArSc1AthuuS0Bxt1FgCLnambdcwh2naDIaaPSRyt3oz32Yy28BsPmjmQCdzq9e5sp7aBg4EAiuZtHLlVm/l1yi3DZzvlepWbwSzWpe+Jawy45W8lGGvMmnlx/ahs3JQiLyjo2NvOp2e5Bfct4mJieOF7NVsN6wkuDGfAvY1gRvp1RpAoWPRMxyNRgOpVOoa13u5Ukl7UFNTc+nvtPC/joC5VfQTqrq5uTkaDAbTVmG5Iu0C9iE/5o9g85vey6t82MrejtxpSYSBuJpIJO6SQVMf/LY4zBXpjYJN8iZscgsrD2QaLN+TcvM9h81PYM6TwTtGaGAjHKyn2NQyTlVVVR3I9ybMF1PTOyoJCc4hagH4Cf0C0BmgL87Ozm7iYN1GFqSXAXuDsrmyXtloIHZHRxkW5/xPbZr/rR1jOg9cWzKZvCe3ZoEFdA7dSb66+ryElbiOgWXz2NjYc+BWoFmeptezfke9NvBAj8TG6+YKWGDI4jOyeYLpL/p9MtwYi8U+iq4YzVENG0HI5hQ1vZ/xk1Hn9dp1hjWgjYCVWJ4Ba+DFHkvAxc6w5aHjbZUtdnAn/v+5knDykKU9/3UG/gC9u3j7qOLmdAAAAABJRU5ErkJggg=='
+				},
+				{
+					name: '退款/售后',
+					link: 'my',
+					defaultUrl:
+						'data:image/png;base64,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'
+				}
+			],
+			activeIndex: 0
+		};
+	},
+	methods: {
+		jumpTo(link, index) {
+			this.activeIndex = index;
+			this.$router.push(link);
+		}
+	}
+};
+</script>
+
+<style lang="less" scoped>
+@import '../style/mixin.less';
+
+.tab-container {
+	height: 58px;
+	.flexible(row, center, space-between);
+	.tab-item {
+		width: 100%;
+		height: 58px;
+		padding: 8px 0;
+		box-sizing: border-box;
+		.flexible(column, center, space-between);
+		.img {
+			width: 24.84px;
+			height: 24.84px;
+		}
+		.name {
+			line-height: 12px;
+			font-size: 10px;
+			color: #859799;
+		}
+	}
+}
+</style>
