@@ -4,8 +4,11 @@ import Movie from '../views/movie/index.vue';
 import Coming from '../views/coming/index.vue';
 import Cinema from '../views/cinema/index.vue';
 import My from '../views/my/index.vue';
-import OrderList from '../views/orderList/index.vue';
-import Suggest from '../views/suggest/index.vue';
+import MovieDetail from '../views/movie/detail.vue';
+import OrderList from '../views/my/orderList.vue';
+import Suggest from '../views/my/suggest.vue';
+import OrderOffer from '../views/my/orderOffer.vue';
+import Search from '../views/movie/search.vue';
 
 Vue.use(Router);
 
@@ -36,6 +39,11 @@ export default new Router({
 			component: My
 		},
 		{
+			path: '/movieDetail',
+			name: 'MovieDetail',
+			component: MovieDetail
+		},
+		{
 			path: '/orderList',
 			name: 'OrderList',
 			component: OrderList
@@ -44,6 +52,16 @@ export default new Router({
 			path: '/suggest',
 			name: 'Suggest',
 			component: Suggest
+		},
+		{
+			path: '/orderOffer',
+			name: 'OrderOffer',
+			component: OrderOffer
+		},
+		{
+			path: '/search',
+			name: 'Search',
+			component: Search
 		}
 	]
 });

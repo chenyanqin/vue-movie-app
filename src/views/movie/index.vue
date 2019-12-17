@@ -2,12 +2,6 @@
 	<div class="movie-container">
 		<top-nav :activeTab="0"></top-nav>
 		<div class="movie-list">
-			<!-- <van-list
-				v-model="loading"
-				:finished="finished"
-				finished-text="没有更多了"
-				@load="onLoad"
-			> -->
 			<div class="movie-item">
 				<div class="left-block">
 					<img
@@ -29,11 +23,112 @@
 					</div>
 				</div>
 			</div>
-			<!-- </van-list> -->
+			<div class="movie-item">
+				<div class="left-block">
+					<img
+						src="http://p1.meituan.net/128.180/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg"
+						alt=""
+					/>
+				</div>
+				<div class="right-block">
+					<div class="content">
+						<div class="name">误杀</div>
+						<div class="rate">观众评分 <span class="score">9.5</span></div>
+						<div class="role ellipsis">主演:肖央,谭卓,陈冲</div>
+						<div class="case ellipsis">
+							今天19家影院放映203场
+						</div>
+					</div>
+					<div class="btn">
+						购票
+					</div>
+				</div>
+			</div>
+			<div class="movie-item">
+				<div class="left-block">
+					<img
+						src="http://p1.meituan.net/128.180/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg"
+						alt=""
+					/>
+				</div>
+				<div class="right-block">
+					<div class="content">
+						<div class="name">误杀</div>
+						<div class="rate">观众评分 <span class="score">9.5</span></div>
+						<div class="role ellipsis">主演:肖央,谭卓,陈冲</div>
+						<div class="case ellipsis">
+							今天19家影院放映203场
+						</div>
+					</div>
+					<div class="btn">
+						购票
+					</div>
+				</div>
+			</div>
+			<div class="movie-item">
+				<div class="left-block">
+					<img
+						src="http://p1.meituan.net/128.180/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg"
+						alt=""
+					/>
+				</div>
+				<div class="right-block">
+					<div class="content">
+						<div class="name">误杀</div>
+						<div class="rate">观众评分 <span class="score">9.5</span></div>
+						<div class="role ellipsis">主演:肖央,谭卓,陈冲</div>
+						<div class="case ellipsis">
+							今天19家影院放映203场
+						</div>
+					</div>
+					<div class="btn">
+						购票
+					</div>
+				</div>
+			</div>
+			<div class="movie-item">
+				<div class="left-block">
+					<img
+						src="http://p1.meituan.net/128.180/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg"
+						alt=""
+					/>
+				</div>
+				<div class="right-block">
+					<div class="content">
+						<div class="name">误杀</div>
+						<div class="rate">观众评分 <span class="score">9.5</span></div>
+						<div class="role ellipsis">主演:肖央,谭卓,陈冲</div>
+						<div class="case ellipsis">
+							今天19家影院放映203场
+						</div>
+					</div>
+					<div class="btn">
+						购票
+					</div>
+				</div>
+			</div>
+			<div class="movie-item">
+				<div class="left-block">
+					<img
+						src="http://p1.meituan.net/128.180/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg"
+						alt=""
+					/>
+				</div>
+				<div class="right-block">
+					<div class="content">
+						<div class="name">误杀</div>
+						<div class="rate">观众评分 <span class="score">9.5</span></div>
+						<div class="role ellipsis">主演:肖央,谭卓,陈冲</div>
+						<div class="case ellipsis">
+							今天19家影院放映203场
+						</div>
+					</div>
+					<div class="btn">
+						购票
+					</div>
+				</div>
+			</div>
 		</div>
-		<!-- <ul class="movie-list">
-			
-		</ul> -->
 	</div>
 </template>
 
@@ -45,7 +140,7 @@ export default {
 	data() {
 		return {
 			loading: false,
-			finished: false
+			finished: true
 		};
 	},
 	components: {
@@ -62,7 +157,9 @@ export default {
 	.flexible(column, flex-start, flex-start);
 	.movie-list {
 		width: 100%;
+		padding-bottom: 48px;
 		flex: 1;
+		overflow: auto;
 		.movie-item {
 			width: 100%;
 			height: 123px;
@@ -108,10 +205,6 @@ export default {
 					.name {
 						color: #333;
 						font-size: 16px;
-						font-weight: bold;
-					}
-					.score {
-						color: #ff495b;
 						font-weight: bold;
 					}
 				}

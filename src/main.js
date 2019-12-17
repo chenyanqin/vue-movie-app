@@ -14,7 +14,9 @@ import {
 	DropdownItem,
 	TreeSelect,
 	List,
-	Cell
+	Cell,
+	Step,
+	Steps
 } from 'vant';
 
 Vue.use(Tab)
@@ -25,7 +27,9 @@ Vue.use(Tab)
 	.use(DropdownItem)
 	.use(TreeSelect)
 	.use(List)
-	.use(Cell);
+	.use(Cell)
+	.use(Step)
+	.use(Steps);
 
 Vue.config.productionTip = false;
 

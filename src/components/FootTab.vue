@@ -70,6 +70,7 @@ export default {
 	right: 0;
 	bottom: 0;
 	height: 48px;
+	background: #fff;
 	border-top: 1px solid #ddd;
 	.flexible(row, center, space-between);
 	.tab-item {
