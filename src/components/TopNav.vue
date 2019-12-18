@@ -1,6 +1,6 @@
 <template>
 	<div class="nav-container">
-		<div class="city-container">
+		<div class="city-container" @click="handToLocate">
 			<span class="city">定位中</span>
 			<i class="down-arrow"></i>
 		</div>
@@ -31,13 +31,11 @@ export default {
 	methods: {
 		handleToSearch() {
 			this.$router.push('/search');
+		},
+		handToLocate() {
+			this.$router.push('/location');
 		}
 	}
-	// data() {
-	// 	return {
-	// 		activeTab: 0
-	// 	};
-	// }
 };
 </script>
 <style>

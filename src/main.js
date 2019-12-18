@@ -16,7 +16,9 @@ import {
 	List,
 	Cell,
 	Step,
-	Steps
+	Steps,
+	IndexBar,
+	IndexAnchor
 } from 'vant';
 
 Vue.use(Tab)
@@ -29,7 +31,9 @@ Vue.use(Tab)
 	.use(List)
 	.use(Cell)
 	.use(Step)
-	.use(Steps);
+	.use(Steps)
+	.use(IndexBar)
+	.use(IndexAnchor);
 
 Vue.config.productionTip = false;
 

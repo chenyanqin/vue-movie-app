@@ -9,6 +9,7 @@ import OrderList from '../views/my/orderList.vue';
 import Suggest from '../views/my/suggest.vue';
 import OrderOffer from '../views/my/orderOffer.vue';
 import Search from '../views/movie/search.vue';
+import Location from '../views/movie/location.vue';
 
 Vue.use(Router);
 
@@ -62,6 +63,11 @@ export default new Router({
 			path: '/search',
 			name: 'Search',
 			component: Search
+		},
+		{
+			path: '/location',
+			name: 'Location',
+			component: Location
 		}
 	]
 });

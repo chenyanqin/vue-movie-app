@@ -2,7 +2,7 @@
 	<div class="movie-container">
 		<top-nav :activeTab="0"></top-nav>
 		<div class="movie-list">
-			<div class="movie-item">
+			<div class="movie-item" @click="handleToDetail">
 				<div class="left-block">
 					<img
 						src="http://p1.meituan.net/128.180/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg"
@@ -145,6 +145,11 @@ export default {
 	},
 	components: {
 		TopNav
+	},
+	methods: {
+		handleToDetail() {
+			this.$router.push('/movieDetail');
+		}
 	}
 };
 </script>
