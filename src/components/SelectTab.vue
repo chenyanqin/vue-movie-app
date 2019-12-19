@@ -118,6 +118,7 @@ export default {
 		},
 		handleToTime(index) {
 			this.timeActiveIndex = index;
+			this.categoryActiveIndex = null;
 		},
 		handleToSearch() {
 			this.$router.push('/search');
