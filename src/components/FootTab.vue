@@ -57,6 +57,12 @@ export default {
 			this.activeIndex = index;
 			this.$router.push(link);
 		}
+	},
+	mounted() {
+		const path = this.$route.path;
+		if (path === '/movie') this.activeIndex = 0;
+		if (path === '/cinema') this.activeIndex = 1;
+		if (path === 'my') this.activeIndex = 2;
 	}
 };
 </script>

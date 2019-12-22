@@ -4,12 +4,12 @@
 			<div class="detail-filter"></div>
 			<div
 				class="poster-bg"
-				style='background: url("http://p1.meituan.net/148.208/detail/967b253953bc7e660cfadbf9d78f67b62852693.jpg");'
+				style='background: url("http://p0.meituan.net/148.208/movie/4bfb08bfe0b8dd20776c6efc4015de6d995158.jpg");'
 			></div>
 			<div class="detail-content">
 				<div class="left-block">
 					<img
-						src="http://p1.meituan.net/148.208/detail/967b253953bc7e660cfadbf9d78f67b62852693.jpg"
+						src="http://p0.meituan.net/148.208/movie/4bfb08bfe0b8dd20776c6efc4015de6d995158.jpg"
 					/>
 				</div>
 				<div class="right-block">
@@ -39,7 +39,7 @@
 			@cancel-panel="cancelPanel"
 		></select-tab>
 		<ul class="movie-list">
-			<li class="movie-item">
+			<li class="movie-item" @click="handleToShow">
 				<div class="top-block">
 					<div class="place line-ellipsis">新东方国际影城 （新东方首府店）</div>
 					<div class="price-block">
@@ -201,6 +201,9 @@ export default {
 		},
 		cancelPanel() {
 			this.headSectionShow = true;
+		},
+		handleToShow() {
+			this.$router.push('/shows');
 		}
 	}
 };
@@ -230,7 +233,7 @@ export default {
 			z-index: -1;
 			overflow: hidden;
 			position: absolute;
-			filter: blur(16px);
+			filter: blur(18px);
 			background-size: cover;
 			background-repeat: no-repeat;
 			opacity: 0.55;

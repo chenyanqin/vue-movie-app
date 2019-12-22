@@ -5,6 +5,7 @@ import 'amfe-flexible';
 import Vue from 'vue';
 import App from './App.vue';
 import router from './route/router';
+import 'vant/lib/icon/local.css';
 import {
 	Tab,
 	Tabs,
@@ -18,7 +19,15 @@ import {
 	Step,
 	Steps,
 	IndexBar,
-	IndexAnchor
+	IndexAnchor,
+	Icon,
+	RadioGroup,
+	Radio,
+	Popup,
+	Checkbox,
+	Switch,
+	Field,
+	CountDown
 } from 'vant';
 
 Vue.use(Tab)
@@ -33,7 +42,15 @@ Vue.use(Tab)
 	.use(Step)
 	.use(Steps)
 	.use(IndexBar)
-	.use(IndexAnchor);
+	.use(IndexAnchor)
+	.use(Icon)
+	.use(RadioGroup)
+	.use(Radio)
+	.use(Popup)
+	.use(Checkbox)
+	.use(Switch)
+	.use(Field)
+	.use(CountDown);
 
 Vue.config.productionTip = false;
 

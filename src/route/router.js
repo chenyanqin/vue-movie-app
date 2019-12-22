@@ -10,6 +10,10 @@ import Suggest from '../views/my/suggest.vue';
 import OrderOffer from '../views/my/orderOffer.vue';
 import Search from '../views/movie/search.vue';
 import Location from '../views/movie/location.vue';
+import Shows from '../views/shows/index.vue';
+import Seat from '../views/seat/index.vue';
+import BuyWay from '../views/buyWay/index.vue';
+import Pay from '../views/pay/index.vue';
 
 Vue.use(Router);
 
@@ -68,6 +72,26 @@ export default new Router({
 			path: '/location',
 			name: 'Location',
 			component: Location
+		},
+		{
+			path: '/shows',
+			name: 'Shows',
+			component: Shows
+		},
+		{
+			path: '/seat',
+			name: 'Seat',
+			component: Seat
+		},
+		{
+			path: '/buyWay',
+			name: 'BuyWay',
+			component: BuyWay
+		},
+		{
+			path: '/pay',
+			name: 'Pay',
+			component: Pay
 		}
 	]
 });

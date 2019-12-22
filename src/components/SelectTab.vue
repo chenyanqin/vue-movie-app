@@ -56,15 +56,52 @@
 						</li>
 					</ul>
 					<div class="city-wrap">
-						<div class="left-nav"></div>
+						<ul class="left-nav">
+							<li class="nav-item active">
+								全部(17)
+							</li>
+							<li class="nav-item">
+								铁东区(4)
+							</li>
+							<li class="nav-item">
+								铁东区(4)
+							</li>
+							<li class="nav-item">
+								铁东区故人归故人归感人故事(4)
+							</li>
+						</ul>
 						<div class="right-content"></div>
 					</div>
 				</div>
-				<div class="brand-select" v-if="categoryActiveIndex === 1">
-					this is brand
-				</div>
+				<ul class="brand-select" v-if="categoryActiveIndex === 1">
+					<li class="brand-item active">
+						<span>全部</span>
+						<span>17</span>
+					</li>
+					<li class="brand-item">
+						<span>中影国际影城</span>
+						<span>2</span>
+					</li>
+					<li class="brand-item">
+						<span>金逸影城</span>
+						<span>1</span>
+					</li>
+				</ul>
 				<div class="characte-select" v-if="categoryActiveIndex === 2">
-					<div class="characte-content"></div>
+					<ul class="characte-content">
+						<li class="characte-item active">
+							全部
+						</li>
+						<li class="characte-item">
+							杜比全景声厅
+						</li>
+						<li class="characte-item">
+							杜比全
+						</li>
+						<li class="characte-item">
+							杜比全
+						</li>
+					</ul>
 					<div class="characte-btn">
 						<span class="btn cancel-btn">重置</span
 						><span class="btn confirm-btn">确定</span>
@@ -114,6 +151,7 @@ export default {
 		handlePanel(el) {
 			let myPanel = document.getElementById('myPanel');
 			this.panelShow = myPanel.contains(el.target);
+			this.categoryActiveIndex = null;
 			this.$emit('cancel-panel');
 		},
 		handleToTime(index) {
@@ -131,8 +169,7 @@ export default {
 @import '../style/mixin.less';
 
 .select-tab {
-	// height: 100%;
-	// width: 100%;
+	background: #fff;
 	.time-tab {
 		padding: 0;
 		margin: 0;
@@ -250,6 +287,23 @@ export default {
 						width: 131.25px;
 						height: 383.59px;
 						background: #fff;
+						overflow: auto;
+						.nav-item {
+							width: 100%;
+							height: 44px;
+							line-height: 44px;
+							padding: 0 15px 0 10px;
+							background: #fff;
+							font-size: 14px;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							box-sizing: border-box;
+							&.active {
+								color: @activeColor;
+								background: #f5f5f5;
+							}
+						}
 					}
 					.right-content {
 						flex: 1;
@@ -261,16 +315,65 @@ export default {
 				width: 100%;
 				height: 328.8px;
 				background: #fff;
+				overflow: auto;
+				.brand-item {
+					width: 100%;
+					height: 44px;
+					padding: 0 15px 0 26px;
+					color: #333;
+					font-size: 14px;
+					box-sizing: border-box;
+					border-bottom: 1px solid #e5e5e5;
+					.flexible(row, center, space-between);
+					&.active {
+						position: relative;
+						color: @activeColor;
+						&::before {
+							content: '';
+							display: block;
+							position: absolute;
+							left: 8px;
+							top: 18px;
+							width: 11.5px;
+							height: 8px;
+							background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAaCAYAAAA9rOU8AAAABGdBTUEAALGPC/xhBQAABFlJREFUSA3dlltoXFUUhtda+8zMmUnStJPLSSdiUmwrSbAIuZEmNo3RQkFEX0pffBIEfVCkgvRmM7ShWk2q9FkQFF+ib1JNWyQXm5BOhpRACpKHIpZQTYg2t5k5c85erpM6YUhTY0aSgPtl7zP79s2/1/r3Rtimwh0dtDB0rTi1pPcoQhsocFdtEwu8nbhXwI7/ZUUQRdYtQHrS2A4Yrqw05wPhV1HjOwzwrEac15prtxzGA/mzwmryMb4PxFWaMaWBB9HlW7SVyngg98uXQU4SYhUDppC411HOxV2RiiHcKpip2kgoFKpoUuCeRMR2Zkxo5D4G/qTQqujHnh53S45pKhIJ7TD3NDPqqAJqchgcB3SvgHwctipHPBBPlE1XhkWRxeCTBxnhjEHQqgVEYmRcs/vmjsHRmABIDD8smxoz9w8cyJsLlh9i4rNE3GozpGXn8bSL3TvaXxrNBvFwNk0ZD6SgKNgKaYqi4rq05rSIcDsButMqG/0Oe2D5aP4WZbky+DAY09M1ZolppjAelwn/vUzu3RsI7vS3ug6d9gmIy5xGxjFHDM4aGP1+tSKZHWnebqg3wwVvzQaMtl+bmoKZjlxrD8TaXVxnsO+MIn0wzWzLAYylye3aZY30Pg7E248cws9Nwo8MhV/lk3tsqrY2lCvIXfGRJ8qK6iUQu8Q/miRSbQnP2BK55648H/tmraPJ3stAoBkHICWNEo3UnRdELUDfRuLxpeyB67VZVF0wjAYXnKgibpSASBHSrSVXn7cGY9ehb70VRBki/brNfJUQbCII+4guBYP+4xtRaKKmJn/Op9skWa7I0SxnjePqIZedqHVz5Pr6GA9HUOHAyCRo9z0xon4UIIl4i1B3BoLGcS8j1luIxdCscH67wXTBR/BMmtEh5jtJggs7B2M/rjc/u38ltaeb6572KbxsomoTPzBR82/imGeXHqS+LhsfX8yelGl7sL5w3nMBB7qU4moxNMlgvpNAOFU6MHI1M+7f1iumV3Jz9Gc/5b2RdPUPPvIuMLQMNDr9heZraynEcjRG2HxRQLqRdLVkTVpi73bCyA3EA15RJkOfbGnZ76Dzmby+2uRfBlytp7Xic/bM0pelExML3rjfBSS/KHREszovj6Nql8F2NY8nyTltDcSvZdbaaP0IjNg1zTbXV8kV/2FQUbutwfOeWXHRD/JnE1/cm53V4ad2v+Bqo8tHvM/LGnkYxRJKR62+2I2NAmSPfwTG6xQgfHCooRJcvBgw8BUJ7gAB/mGDHVWsfgFQlwzU+1zEFLs8aiv1bnH/UCx74Vzaa8JkAyngT31oHBFLNyU658QCkgqh1HsYMUM8CXiqZHC4P5fNV895LEwGaKa5eb8P7E7TUEflfRiS9Ad5xSc16OF54I7IQGxg9aK5fv8jTAYocbixPJnmzoCiYy6yIZfeYMKPJ0pvDI/luvFa89aFyQAtNjaWOn44wYgRR/Plkp9G4mst+L/57S+eQuIEp8oPOAAAAABJRU5ErkJggg==);
+							background-repeat: no-repeat;
+							background-size: 100% 100%;
+						}
+					}
+				}
 			}
 			.characte-select {
 				width: 100%;
 				height: 341px;
 				background: #fff;
 				.characte-content {
+					width: 100%;
 					height: 328.8px;
 					min-height: 150px;
 					max-height: 270px;
+					padding: 0 12px;
 					overflow: scroll;
+					box-sizing: border-box;
+					display: flex;
+					flex-wrap: wrap;
+					align-items: flex-start;
+					.characte-item {
+						width: 21.3%;
+						height: 38px;
+						line-height: 38px;
+						margin: 10px 3% 0 0;
+						text-align: center;
+						font-size: 12px;
+						color: #2c3e50;
+						border: 1px solid #ccc;
+						border-radius: 5px;
+						&.active {
+							color: @activeColor;
+							background: #fcf0f0;
+							border: 1px solid @activeColor;
+						}
+					}
 				}
 				.characte-btn {
 					height: 60px;
