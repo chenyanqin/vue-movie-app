@@ -15,59 +15,21 @@
 		<div class="body-block">
 			<div
 				class="post-bg"
-				style='background-image: url("http://p0.meituan.net/148.208/movie/a3d6ca3bdd5b0ddd7016acff9a9f2f2e2805813.jpg");'
+				:style="{ backgroundImage: 'url(' + showDetail['img'] + ')' }"
 			></div>
 			<div class="post-bg-filter"></div>
-			<div
-				class="swiper-wrapper"
-				style="transform: translate3d(154px, 0px, 0px);
-    transition-duration: 0ms;"
-			>
-				<div class="swiper-slide swiper-slide-active">
+			<swiper :options="swiperOption" ref="mySwiper">
+				<swiper-slide v-for="(item, index) in slideList" :key="index">
 					<div class="post">
-						<img
-							src="http://p0.meituan.net/148.208/movie/a3d6ca3bdd5b0ddd7016acff9a9f2f2e2805813.jpg"
-							alt=""
-						/>
+						<img :src="item.img" alt="" />
 					</div>
-					<i class="down-arrow"></i>
-				</div>
-				<div class="swiper-slide">
-					<div class="post">
-						<img
-							src="http://p0.meituan.net/148.208/movie/a3d6ca3bdd5b0ddd7016acff9a9f2f2e2805813.jpg"
-							alt=""
-						/>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="post">
-						<img
-							src="http://p0.meituan.net/148.208/movie/a3d6ca3bdd5b0ddd7016acff9a9f2f2e2805813.jpg"
-							alt=""
-						/>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="post">
-						<img
-							src="http://p0.meituan.net/148.208/movie/a3d6ca3bdd5b0ddd7016acff9a9f2f2e2805813.jpg"
-							alt=""
-						/>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="post">
-						<img
-							src="http://p0.meituan.net/148.208/movie/a3d6ca3bdd5b0ddd7016acff9a9f2f2e2805813.jpg"
-							alt=""
-						/>
-					</div>
-				</div>
-			</div>
+				</swiper-slide>
+			</swiper>
 			<div class="movie-info">
 				<div class="movie-title">
-					叶问4：完结篇<span style="color: #ff9934;">9.5分</span>
+					{{ showDetail.name
+					}}<span style="color: #ffb400; font-weight: bold;">9.5</span
+					><span style="color: #ffb400; font-size: 10px;">分</span>
 				</div>
 				<div class="movie-desc">107分钟 | 动作 | 甄子丹,吴樾,吴建豪</div>
 			</div>
@@ -173,6 +135,8 @@
 	</div>
 </template>
 <script>
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
+
 export default {
 	name: 'Shows',
 	data() {
@@ -184,8 +148,71 @@ export default {
 				'周六12月21号',
 				'周天12月22号'
 			],
-			timeActiveIndex: 0
+			timeActiveIndex: 0,
+			swiperOption: {
+				initialSlide: 0,
+				direction: 'horizontal',
+				slidesPerView: 4,
+				spaceBetween: 15,
+				centeredSlides: true,
+				on: {
+					slideChangeTransitionEnd: () => {
+						let swiper = this.$refs.mySwiper.swiper;
+						let i = swiper.activeIndex;
+						console.log('this is e====>', swiper, i);
+						this.showIndex = i;
+						this.showDetail = this.slideList[i];
+					}
+				}
+			},
+			slideList: [
+				{
+					id: 1,
+					img:
+						'http://p0.meituan.net/148.208/movie/a3d6ca3bdd5b0ddd7016acff9a9f2f2e2805813.jpg',
+					name: '叶问'
+				},
+				{
+					id: 2,
+					img:
+						'http://p1.meituan.net/148.208/movie/967b253953bc7e660cfadbf9d78f67b62852693.jpg',
+					name: '误杀'
+				},
+				{
+					id: 3,
+					img:
+						'http://p0.meituan.net/148.208/movie/aa10dea915717372fc0b36bc75a4a5a92888124.jpg',
+					name: '只有芸知道'
+				},
+				{
+					id: 4,
+					img:
+						'http://p0.meituan.net/148.208/moviemachine/a16716ff2873be37857add59f882e44d5071965.jpg',
+					name: '星球大战'
+				},
+				{
+					id: 1,
+					img:
+						'http://p0.meituan.net/148.208/movie/a3d6ca3bdd5b0ddd7016acff9a9f2f2e2805813.jpg',
+					name: '叶问'
+				},
+				{
+					id: 1,
+					img:
+						'http://p0.meituan.net/148.208/movie/a3d6ca3bdd5b0ddd7016acff9a9f2f2e2805813.jpg',
+					name: '叶问'
+				}
+			],
+			showDetail: {
+				img: '',
+				name: ''
+			},
+			showIndex: 0
 		};
+	},
+	components: {
+		swiper,
+		swiperSlide
 	},
 	methods: {
 		handleToTime(index) {
@@ -194,9 +221,23 @@ export default {
 		handleToSelectSeat() {
 			this.$router.push('/seat');
 		}
+	},
+	mounted() {
+		this.showIndex = 0;
+		this.showDetail = this.slideList[0];
 	}
 };
 </script>
+<style>
+.swiper-container {
+	margin-left: 10%;
+}
+.swiper-wrapper {
+	height: 95px;
+	display: flex;
+}
+</style>
+
 <style lang="less" scoped>
 @import '../../style/mixin.less';
 
@@ -265,155 +306,50 @@ export default {
 			left: 0;
 			opacity: 0.55;
 		}
-		// .swiper-wrapper {
-		// 	position: relative;
-		// 	width: 100%;
-		// 	height: 100%;
-		// 	z-index: 1;
-		// 	display: -webkit-box;
-		// 	display: -ms-flexbox;
-		// 	display: flex;
-		// 	transition-property: -webkit-transform;
-		// 	transition-property: transform;
-		// 	transition-property: transform, -webkit-transform;
-		// 	-webkit-box-sizing: content-box;
-		//   box-sizing: content-box;
-		// 	.swiper-slide {
-		// 		height: 95px;
-		// 		flex-shrink: 0;
-		// 		width: 100%;
-		// 		height: 100%;
-		// 		position: relative;
-		// 		transition-property: transform;
-		// 		// white-space: nowrap;
-		// 		// overflow-x: scroll;
-		// 		.post {
-		// 			width: 65.15px;
-		// 			-webkit-transition: -webkit-transform 0.3s;
-		// 			transition: -webkit-transform 0.3s;
-		// 			transition: transform 0.3s;
-		// 			transition: transform 0.3s, -webkit-transform 0.3s;
-		// 			position: relative;
-		// 			// box-sizing: border-box;
-		// 			img {
-		// 				width: 65.15px;
-		// 				// height: 109.25px;
-		// 				// height: 95px;
-		// 				// -webkit-transform: scale(1);
-		// 				// transform: scale(1);
-		// 			}
-		// 		}
-		// 	}
-		// 	.swiper-slide-active {
-		// 		height: 95px;
-		// 		position: relative;
-		// 		padding-right: 5px;
-		// 		&::after {
-		// 			content: '';
-		// 			position: absolute;
-		// 			bottom: -6px;
-		// 			left: 50%;
-		// 			transform: translateX(-50%);
-		// 			width: 10px;
-		// 			height: 5px;
-		// 			background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAAGXRFW…DgLorvI3AVJWozsELJuhmYocyaCvQo1f2jeiT/cK8AAwBzvH2t7aaajQAAAABJRU5ErkJggg==)
-		// 				no-repeat;
-		// 			background-size: contain;
-		// 		}
-		// 		.post {
-		// 			transform: scale(1.15);
-		// 			border: 2px solid #fff;
-		// 		}
-		// 	}
-		// }
 		.swiper-wrapper {
-			// position: relative;
-			// width: 100%;
-			// height: 100%;
-			// z-index: 1;
-			// display: -webkit-box;
-			// display: -ms-flexbox;
 			margin-top: -8px;
-			display: flex;
-			padding: 0;
-			// margin: 0;
-			white-space: nowrap;
-			overflow-x: scroll;
-			// transition-property: -webkit-transform;
-			// transition-property: transform;
-			// transition-property: transform, -webkit-transform;
-			// -webkit-box-sizing: content-box;
-			// box-sizing: content-box;
 			.swiper-slide {
 				width: 65px;
 				height: 95px;
-				margin-right: 8px;
-				flex-shrink: 0;
-				// width: 100%;
-				// height: 100%;
 				.post {
-					// width: 100%;
 					width: 65px;
-					// -webkit-transition: -webkit-transform 0.3s;
-					// transition: -webkit-transform 0.3s;
-					// transition: transform 0.3s;
-					// transition: transform 0.3s, -webkit-transform 0.3s;
-					// position: relative;
-					// box-sizing: border-box;
 					img {
 						width: 65px;
 						height: 95px;
-						// height: 109.25px;
-						// height: 95px;
-						// -webkit-transform: scale(1);
-						// transform: scale(1);
+						transform: scale(1);
 					}
 				}
 			}
 			.swiper-slide-active {
-				width: 74.75px;
-				height: 117.3px;
 				position: relative;
-				margin-right: 5px;
-				border: 2px solid #fff;
 				box-sizing: border-box;
 				&::after {
-					// content: ' ';
-					// position: absolute;
-					// bottom: -12px;
-					// left: 50%;
-					// width: 0;
-					// height: 0;
-					// border: 6px solid transparent;
-					// border-top: 6px solid #fff;
-					// transform: translateX(-50%);
-					// width: 10px;
-					// height: 5px;
-					// background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjMwODIyNEEwNTkwRDExRTZBNkMwOTE1NDA0RjA5MDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjMwODIyNEExNTkwRDExRTZBNkMwOTE1NDA0RjA5MDA3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MzA4MjI0OUU1OTBEMTFFNkE2QzA5MTU0MDRGMDkwMDciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MzA4MjI0OUY1OTBEMTFFNkE2QzA5MTU0MDRGMDkwMDciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7kjYk3AAAAVUlEQVR42qzMMQ7AIAwEwSvy8P25EwokZNkYCFcgCu/IzLB7Q9+jS2gz1MG/KN0ZwVOU0fDgLorvI3AVJWozsELJuhmYocyaCvQo1f2jeiT/cK8AAwBzvH2t7aaajQAAAABJRU5ErkJggg==)
-					// 	no-repeat;
-					// background-size: contain;
-				}
-				.post {
-					// transform: scale(1.15);
-					// border: 2px solid #fff;
-					img {
-						width: 71.15px;
-						height: 109.25px;
-					}
-				}
-				.down-arrow {
+					content: ' ';
 					position: absolute;
-					bottom: -12px;
-					left: 50%;
+					bottom: -21px;
+					left: 58%;
 					width: 0;
 					height: 0;
 					border: 6px solid transparent;
 					border-top: 6px solid #fff;
+					transform: translateX(-58%);
+				}
+				.post {
+					position: relative;
+					top: -8px;
+					width: 70.15px;
+					height: 109.25px;
+					// transform: scale(1.15);
+					border: 2px solid #fff;
+					img {
+						width: 71.15px !important;
+						height: 109.25px !important;
+					}
 				}
 			}
 		}
 		.movie-info {
-			margin-top: 23px;
+			margin-top: 30px;
 			text-align: center;
 			.movie-title {
 				height: 24px;
